@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,6 +43,12 @@ public class AccountRestController {
 	public ResponseEntity<Account> deposit(@PathVariable Long id, @RequestBody double amount) {
 		Account deposit = accountService.deposit(id, amount);
 		return ResponseEntity.ok(deposit);
+	}
+
+	@DeleteMapping("/account/{id}")
+	public ResponseEntity<String> deleteAccount(@PathVariable Long id) {
+		String deleteById = accountService.deleteById(id);
+		return ResponseEntity.ok(deleteById);
 	}
 
 }
